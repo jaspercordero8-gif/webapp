@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanNav – MVP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIMPLE TOP NAV -->
+    <header class="top-nav">
+        <h1 class="nav-brand-name">UrbanNav (MVP)</h1>
+    </header>
+
+    <div class="app-wrapper">
+
+        <!-- SIDEBAR (ONLY MVP ELEMENTS) -->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+
+                <!-- ROUTE PLANNING -->
+                <div class="section-card">
+                    <p class="section-label">PLAN YOUR ROUTE</p>
+
+                    <div class="form-stack">
+                        <div class="route-input-row">
+                            <div class="route-inputs">
+                                <input id="fromInput" type="text" placeholder="Start point" class="route-input">
+                                <input id="toInput" type="text" placeholder="Destination" class="route-input">
+                            </div>
+                        </div>
+
+                        <button id="findRouteBtn" class="btn-primary">Find Route →</button>
+                    </div>
+                </div>
+
+                <!-- TRANSPORT MODES (CORE MVP) -->
+                <div id="transportModes" class="section-card" style="display:none">
+                    <p class="section-label">TRANSPORT MODE</p>
+
+                    <div class="mode-grid">
+                        <button onclick="app.selectMode('WALKING')" class="mode-btn">🚶 Walk</button>
+                        <button onclick="app.selectMode('BICYCLING')" class="mode-btn">🚲 Bike</button>
+                        <button onclick="app.selectMode('DRIVING')" class="mode-btn">🚗 Drive</button>
+                        <button onclick="app.selectMode('TRANSIT')" class="mode-btn">🚆 Transit</button>
+                    </div>
+                </div>
+
+                <!-- ROUTE DETAILS -->
+                <div id="routeDetails" class="section-card" style="display:none">
+                    <p class="section-label">ROUTE DETAILS</p>
+                    <div id="routeInfo"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MAP AREA -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!-- IMPORT CONFIG + MAPS -->
+    <script src="config.js"></script>
+
+    <script>
+        // Inject Google Maps script
+        const mapsScript = document.createElement('script');
+        mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_KEY}&libraries=places`;
+        mapsScript.async = true;
+        mapsScript.defer = true;
+        document.head.appendChild(mapsScript);
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
